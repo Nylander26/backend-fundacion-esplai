@@ -2,7 +2,7 @@
   "name": "backend-fundacion-esplai",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index",
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
@@ -15,9 +15,11 @@
   },
   "dependencies": {
     "axios": "^1.4.0",
+    "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.1.0",
     "morgan": "^1.10.0"
