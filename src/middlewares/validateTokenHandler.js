@@ -3,9 +3,9 @@ const jwt = require("jsonwebtoken");
 
 const validate = asyncHandler(async (req, res, next) => {
   let token;
-  let authHeader = req.headers.Authorization || req.headers.authorization;
+  let authHeader = req.get("authorization" || "Authorization");
 
-  if (authHeader && authHeader.startsWith("Bearer")) {
+  if (authHeader && authHeader.toLocaleLowerCase().startsWith("bearer")) {
     token = authHeader.split(" ")[1];
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
       if (err) {
@@ -13,12 +13,15 @@ const validate = asyncHandler(async (req, res, next) => {
         throw new Error("Usuario no autorizado.");
       }
       req.user = decoded.user;
-      next()
+      req.token = token;
+      next();
     });
 
     if (!token) {
-        res.status(401);
-        throw new Error("Usuario no autorizado o el token falta en la solicitud.");
+      res.status(401);
+      throw new Error(
+        "Usuario no autorizado o el token falta en la solicitud."
+      );
     }
   }
 });

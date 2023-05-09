@@ -17,11 +17,7 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: [true, "Por favor ingrese la contraseña."]
-    },
-    passwordChecker: {
-        type: String,
-        //required: [true, "Por favor ingrese la contraseña."]
-    } 
+    }
 }, {
     timestamps: true
 })
