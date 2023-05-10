@@ -1,6 +1,7 @@
 //Initialization
 const express = require("express");
 const app = express();
+//Morgan shows the http requests in the console 
 const morgan = require("morgan");
 
 //Database
